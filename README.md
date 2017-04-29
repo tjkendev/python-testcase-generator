@@ -8,6 +8,8 @@ Python 2.7 or Python 3.5
 ## Install
 
 ```sh
+$ git clone https://github.com/tjkendev/python-text-generator
+$ cd python-text-generator
 $ python setup.py install
 ```
 
