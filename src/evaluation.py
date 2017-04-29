@@ -10,7 +10,7 @@ def execute(exec_code, scope, fout):
 def evaluate(s_lst, scope):
     result = []
     for el in s_lst:
-        if el == " ":
+        if el in " \t":
             val = el
         else:
             val = eval(el, scope)

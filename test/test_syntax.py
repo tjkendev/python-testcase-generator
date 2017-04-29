@@ -8,6 +8,10 @@ class TestSyntax(unittest.TestCase):
         self.target = generator
         self.output = StringIO()
 
+    def test_tab_split(self):
+        self.target(StringIO("1\t2\t3"), self.output)
+        self.assertEqual("1\t2\t3\n", self.output.getvalue())
+
     def test_skip_comment(self):
         self.target(StringIO("1 2 3 [2] # comment"), self.output)
         self.assertEqual("1 2 3 2\n", self.output.getvalue())
