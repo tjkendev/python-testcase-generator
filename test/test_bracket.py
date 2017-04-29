@@ -1,5 +1,5 @@
 import unittest
-from python_text_generator_tool.main import generator
+from src.main import generator
 from StringIO import StringIO
 
 class TestBracket(unittest.TestCase):
@@ -31,6 +31,10 @@ class TestBracket(unittest.TestCase):
         self.target(StringIO("[1, '] [', 3]"), self.output)
         self.assertEqual("1 ] [ 3\n", self.output.getvalue())
 
+    def test_brackets_empty(self):
+        self.target(StringIO("[]"), self.output)
+        self.assertEqual("\n", self.output.getvalue())
+
     def test_parenthesis_tuple(self):
         self.target(StringIO("(1, 2, 3)"), self.output)
         self.assertEqual("1 2 3\n", self.output.getvalue())
@@ -51,6 +55,10 @@ class TestBracket(unittest.TestCase):
         self.target(StringIO("(1, ') (', 3)"), self.output)
         self.assertEqual("1 ) ( 3\n", self.output.getvalue())
 
+    def test_parenthesis_empty(self):
+        self.target(StringIO("()"), self.output)
+        self.assertEqual("\n", self.output.getvalue())
+
     def test_brace_set(self):
         self.target(StringIO("{1, 2, 3}"), self.output)
         self.assertEqual("1 2 3\n", self.output.getvalue())
@@ -66,6 +74,10 @@ class TestBracket(unittest.TestCase):
     def test_brace_set_in_string(self):
         self.target(StringIO("{1, 3, '} {'}"), self.output)
         self.assertEqual("1 3 } {\n", self.output.getvalue())
+
+    def test_brace_empty(self):
+        self.target(StringIO("{} set()"), self.output)
+        self.assertEqual(" \n", self.output.getvalue())
 
     def test_mixed_nested_bracket(self):
         self.target(StringIO("(1, [4, {6}, (5, 8)], 3)"), self.output)

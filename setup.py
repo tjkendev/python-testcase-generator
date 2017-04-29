@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[],
     entry_points={
-        'console_scripts': 'python-text-generator=python_text_generator_tool.main:entry'
+        'console_scripts': 'python-text-generator=src.main:entry'
     },
     zip_safe=False,
     classifiers=[
