@@ -1,9 +1,14 @@
 Python Text Generator
 ====
 
+Pythonを使ってテキストを生成できるツールです。
+競技プログラミングにおいて、CLI上で入力を簡単に生成するのを想定してます。
+
+erubyのようにループ展開で文字列を生成する機能は現在ついておりません。
+
 ## Requirement
 
-Python 2.7 or Python 3.5
+Python 2.7 or Python 3.5 を想定しています。
 
 ## Install
 
