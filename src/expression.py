@@ -52,13 +52,3 @@ def split(s):
         result.pop()
     return result
 
-def evaluate(s_lst, scope):
-    result = []
-    for el in s_lst:
-        if el == " ":
-            val = el
-        else:
-            val = eval(el, scope)
-        if val is not None:
-            result.append(val)
-    return result

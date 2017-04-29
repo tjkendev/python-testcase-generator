@@ -1,6 +1,6 @@
 
 import unittest
-from src.main import generator
+from src.generator import generator
 from StringIO import StringIO
 
 class TestSyntax(unittest.TestCase):
