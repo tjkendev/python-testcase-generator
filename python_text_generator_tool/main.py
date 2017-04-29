@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys, argparse
 import collections
+import contextlib
 
 def next_deli(lst):
     if len(lst) <= 1:
@@ -58,6 +59,8 @@ def split_expr(s):
         prev_escape = (c == '\\')
     if len(el) > 0:
         sps.append(el)
+    while len(sps) > 0 and sps[-1] == " ":
+        sps.pop()
     return sps
 
 def evaluate_expr(s_lst, scope):
@@ -72,7 +75,8 @@ def evaluate_expr(s_lst, scope):
     return result
 
 def to_s(val, delimiter=None):
-    delimiter = delimiter or ' '
+    if delimiter is None:
+        delimiter = ' '
     if type(delimiter) == str:
         delimiter = [delimiter]
     c_delimiter = delimiter[0]
@@ -100,7 +104,9 @@ def generator(fin, fout):
             exec_code.append(s[base_indent[0]:])
             continue
         if len(exec_code) > 0:
+            old_stdout, sys.stdout = sys.stdout, fout
             exec("\n".join(exec_code), scope)
+            sys.stdout = old_stdout
             del exec_code[:]
         if len(s) == 0:
             sys.stdout.write("\n")
@@ -111,6 +117,10 @@ def generator(fin, fout):
 
         fout.write("".join(map(to_s, result)))
         fout.write("\n")
+    if len(exec_code) > 0:
+        old_stdout, sys.stdout = sys.stdout, fout
+        exec("\n".join(exec_code), scope)
+        sys.stdout = old_stdout
 
 def entry():
     parser = argparse.ArgumentParser()
