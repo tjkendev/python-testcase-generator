@@ -1,14 +1,9 @@
 Python Text Generator
 ====
 
-Pythonを使ってテキストを生成できるツールです。  
-競技プログラミングにおいて、CLI上で入力を生成することを想定してます。
+Python Text Generator is text generator using Python expressions and statements.
 
-erubyのようにループ展開で文字列を生成する機能は現在ついておりません。
-
-## Requirement
-
-Python 2.7 or Python 3.5 を想定しています。
+This tool allows you to generate texts by writing Python expressions directly.
 
 ## Install
 
@@ -20,6 +15,16 @@ $ python setup.py install
 
 ## Usage
 
+You can generate text from stdin by calling `python-text-generator` with no parameters,
+and output generated text as stdout.
+```sh
+$ echo "[i**2 for i in range(9)]" | python-text-generator
+0 1 4 9 16 25 36 49 64
+```
+
+To generate text from a file, you can specify file path with `-i` parameters.
+
+For example, to generate texts from the file below:
 ```sh
 $ cat test
 1 2 3 "a" ["b", "c"]
@@ -43,6 +48,8 @@ A
 to_s(A, "\n")
 to_s(B, ["\n","-"])
 ```
+
+You can specify the file like below:
 ```sh
 $ python-text-generator -i test
 1 2 3 a b c
@@ -64,3 +71,4 @@ bbbbbbbbbbbbbbb 7
 6-7 8
 ```
 
+Also, you can specify file path to write generated text with `-o` parameters.
