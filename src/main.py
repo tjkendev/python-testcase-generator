@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import expression
+import src.expression as expression
 import sys, argparse
 import collections
 
