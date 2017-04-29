@@ -1,0 +1,4 @@
+dist
+build
+python_text_generator.egg-info
+*.pyc
