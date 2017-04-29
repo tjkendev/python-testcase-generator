@@ -1,78 +1,7 @@
 #!/usr/bin/env python
+import expression
 import sys, argparse
 import collections
-import contextlib
-
-def next_deli(lst):
-    if len(lst) <= 1:
-        return [' ']
-    return lst[1:]
-
-def split_expr(s):
-    sps = []
-    el = ""
-    eval_mode = 0
-    level = 0
-    prev_escape = 0
-    in_string = None
-    for c in s:
-        if eval_mode == 0:
-            if c == '#': break
-            if c == '`': eval_mode = 1
-            if c == '"': eval_mode = 2
-            if c == "'": eval_mode = 4
-            if c == '[': eval_mode = 8
-            if c == '(': eval_mode = 16
-            if c == '{': eval_mode = 32
-
-            if eval_mode != 0: level = 1
-        else:
-            if eval_mode in [1, 8, 16, 32]:
-                if c in '\'"':
-                    if in_string is None:
-                        in_string = c
-                    elif not prev_escape and in_string == c:
-                        in_string = None
-            if eval_mode == 1 and not in_string:
-                if c == '`': level = 0
-            if eval_mode == 2 and not prev_escape:
-                if c == '"': level = 0
-            if eval_mode == 4 and not prev_escape:
-                if c == "'": level = 0
-            if eval_mode == 8 and not in_string:
-                if c == '[': level += 1
-                if c == ']': level -= 1
-            if eval_mode == 16 and not in_string:
-                if c == '(': level += 1
-                if c == ')': level -= 1
-            if eval_mode == 32 and not in_string:
-                if c == '{': level += 1
-                if c == '}': level -= 1
-
-            if level == 0: eval_mode = 0
-        if c in ' \t' and eval_mode == 0:
-            if len(el) > 0:
-                sps.append(el); el = ""
-            sps.append(c)
-        elif eval_mode not in [0, 1] or c != '`' or in_string:
-            el += c
-        prev_escape = (c == '\\')
-    if len(el) > 0:
-        sps.append(el)
-    while len(sps) > 0 and sps[-1] == " ":
-        sps.pop()
-    return sps
-
-def evaluate_expr(s_lst, scope):
-    result = []
-    for el in s_lst:
-        if el == " ":
-            val = el
-        else:
-            val = eval(el, scope)
-        if val is not None:
-            result.append(val)
-    return result
 
 def to_s(val, delimiter=None):
     if delimiter is None:
@@ -81,8 +10,12 @@ def to_s(val, delimiter=None):
         delimiter = [delimiter]
     c_delimiter = delimiter[0]
     result = []
+    if len(delimiter) <= 1:
+        n_delimiter = [' ']
+    else:
+        n_delimiter = delimiter[1:]
     if isinstance(val, collections.Iterable) and not isinstance(val, str):
-        return c_delimiter.join(map(lambda x: to_s(x, next_deli(delimiter)), val))
+        return c_delimiter.join(map(lambda x: to_s(x, n_delimiter), val))
     return str(val)
 
 def generator(fin, fout):
@@ -112,8 +45,8 @@ def generator(fin, fout):
             sys.stdout.write("\n")
             continue
 
-        sp_exprs = split_expr(s)
-        result = evaluate_expr(sp_exprs, scope)
+        sp_exprs = expression.split(s)
+        result = expression.evaluate(sp_exprs, scope)
 
         fout.write("".join(map(to_s, result)))
         fout.write("\n")
