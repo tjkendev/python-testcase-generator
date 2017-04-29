@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys, argparse
+import collections
 
 def next_deli(lst):
     if len(lst) <= 1:
@@ -52,7 +53,7 @@ def split_expr(s):
             if len(el) > 0:
                 sps.append(el); el = ""
             sps.append(c)
-        elif eval_mode not in [0, 1] or c != '`':
+        elif eval_mode not in [0, 1] or c != '`' or in_string:
             el += c
         prev_escape = (c == '\\')
     if len(el) > 0:
@@ -76,13 +77,11 @@ def to_s(val, delimiter=None):
         delimiter = [delimiter]
     c_delimiter = delimiter[0]
     result = []
-    if type(val) in [list, tuple, set]:
+    if isinstance(val, collections.Iterable) and not isinstance(val, str):
         return c_delimiter.join(map(lambda x: to_s(x, next_deli(delimiter)), val))
-    elif type(val) == dict:
-        return c_delimiter.join(map(lambda x: to_s(x, next_deli(delimiter)), val.keys()))
     return str(val)
 
-def main(fin, fout):
+def generator(fin, fout):
     scope = {
         'to_s': to_s
     }
@@ -126,7 +125,7 @@ def entry():
         fout = open(args.output_file, 'w')
     else:
         fout = sys.stdout
-    main(fin, fout)
+    generator(fin, fout)
     fin.close()
     fout.close()
 
