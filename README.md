@@ -3,30 +3,36 @@ Python Text Generator
 
 Python Text Generator is text generator using Python expressions and statements.
 
-This tool allows you to generate texts by writing Python expressions directly.
+This tool allows you to generate text by writing Python expressions directly.
 
 ## Install
 
+Installation using `setup.py`.
 ```sh
 $ git clone https://github.com/tjkendev/python-text-generator
 $ cd python-text-generator
 $ python setup.py install
 ```
+Installation using pip.
+```sh
+$ git clone https://github.com/tjkendev/python-text-generator
+$ cd python-text-generator
+$ pip install python-text-generator
+```
 
 ## Usage
 
-You can generate text from stdin by calling `python-text-generator` with no parameters,
-and output generated text as stdout.
+By calling `python-text-generator` with no parameters, text is generated from stdin
+and outputted as stdout.
 ```sh
 $ echo "[i**2 for i in range(9)]" | python-text-generator
 0 1 4 9 16 25 36 49 64
 ```
 
-To generate text from a file, you can specify file path with `-i` parameters.
-
-For example, to generate texts from the file below:
+To generate text from a file, you can specify input file path with `-i` parameter.  
+For example, to generate text from the file below:
 ```sh
-$ cat test
+$ cat test.txt
 1 2 3 "a" ["b", "c"]
 [1,2,3] [1,2,3] # comment
 10*"a"
@@ -49,9 +55,9 @@ to_s(A, "\n")
 to_s(B, ["\n","-"])
 ```
 
-You can specify the file like below:
+You can specify input file path as follows:
 ```sh
-$ python-text-generator -i test
+$ python-text-generator -i test.txt
 1 2 3 a b c
 1 2 3 1 2 3
 aaaaaaaaaa
@@ -71,4 +77,4 @@ bbbbbbbbbbbbbbb 7
 6-7 8
 ```
 
-Also, you can specify file path to write generated text with `-o` parameters.
+Also, to write generated text to a file, specify output file path with `-o` parameter.
