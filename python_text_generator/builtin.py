@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-import collections
+import collections, platform
 
 # "unicode" does not exist in Python3
-if "unicode" not in globals():
+if platform.python_version_tuple()[0] == '3':
     unicode = str
 
 def to_s(val, delimiter=None):
@@ -21,4 +21,7 @@ def to_s(val, delimiter=None):
             and not isinstance(val, unicode)
             and not isinstance(val, bytes)):
         return c_delimiter.join(map(lambda x: to_s(x, n_delimiter), val))
+    if (not isinstance(val, str) and isinstance(val, bytes)):
+        # Python3: bytes --> str
+        return val.decode('utf-8')
     return str(val)
