@@ -1,6 +1,24 @@
 #!/usr/bin/env python
 
-import sys
+import sys, os
+import src.setting as setting
+import src.builtin as builtin
+
+def default_scope():
+    return {
+        'to_s': builtin.to_s
+    }
+
+def execute_init(scope, fout):
+    fname = setting.init_pyfile
+    if not os.path.isfile(fname):
+        return
+
+    f = open(fname, 'r')
+    old_stdout, sys.stdout = sys.stdout, fout
+    exec(f.read(), scope)
+    sys.stdout = old_stdout
+    f.close()
 
 def execute(exec_code, scope, fout):
     old_stdout, sys.stdout = sys.stdout, fout

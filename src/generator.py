@@ -2,15 +2,15 @@
 
 import sys
 from src.expression import split
-from src.evaluation import evaluate, execute
+from src.evaluation import evaluate, execute, execute_init, default_scope
 from src.builtin import to_s
 
-def generator(fin, fout):
-    scope = {
-        'to_s': to_s
-    }
+def generator(fin = sys.stdin, fout = sys.stdout):
+    scope = default_scope()
     exec_code = []
     base_indent = [-1]
+
+    execute_init(scope, fout)
 
     for line in fin.readlines():
         s = line.strip()
