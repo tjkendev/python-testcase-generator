@@ -6,7 +6,10 @@ setup(
     author = 'yaketake08',
     author_email = 'jake-basu@hotmail.co.jp',
     version = setting.version,
-    packages = find_packages(),
+    packages = ['python_text_generator'],
+    package_dir = {
+        'python_text_generator': 'src'
+    },
     install_requires = [],
     entry_points = {
         'console_scripts': 'python-text-generator=src.main:entry'
