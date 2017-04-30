@@ -36,13 +36,15 @@ $ cat test.txt
 1 2 3 "a" ["b", "c"]
 [1,2,3] [1,2,3] # comment
 10*"a"
+% # You can write expressions including space by using backquote (`).
+% # It does not mean repr() in Python 2. (special specification in this tool)
 `"b" * 15` `1 + 2 * 3`
 10**9+7
 
 % # use Python statement and variable
 % x = [1, 2]; y = [9, 3, 4, "d"]
 x[0] x y*2
-{4, 5, 6}
+{4, x[2], 6}
 
 % # import and use library
 % import random
@@ -65,13 +67,13 @@ bbbbbbbbbbbbbbb 7
 1000000007
 
 1 1 2 9 3 4 d 9 3 4 d
-4 5 6
+2 4 6
 
-2 7 6
+10 2 7
 
+10
 2
 7
-6
 1-2-3
 4-5
 6-7 8
