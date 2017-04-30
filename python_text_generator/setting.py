@@ -3,7 +3,7 @@ import os
 
 # base setting
 version = "1.0"
-config_var = "PYTHON-TEXT-GENERATOR-CONFIG"
+config_var = "PYTHON_TEXT_GENERATOR_CONFIG"
 
 # configuration path
 config_path = os.getenv(config_var)
