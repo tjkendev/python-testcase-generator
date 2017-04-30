@@ -12,6 +12,6 @@ def to_s(val, delimiter=None):
         n_delimiter = [' ']
     else:
         n_delimiter = delimiter[1:]
-    if isinstance(val, collections.Iterable) and not isinstance(val, str):
+    if (isinstance(val, collections.Iterable) and not isinstance(val, basestring)):
         return c_delimiter.join(map(lambda x: to_s(x, n_delimiter), val))
     return str(val)

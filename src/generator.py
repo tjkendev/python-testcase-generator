@@ -27,7 +27,7 @@ def generator(fin = sys.stdin, fout = sys.stdout):
             execute(exec_code, scope, fout)
             del exec_code[:]
         if len(s) == 0:
-            sys.stdout.write("\n")
+            fout.write("\n")
             continue
 
         sp_exprs = split(s)
