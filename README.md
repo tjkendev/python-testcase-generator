@@ -78,3 +78,6 @@ bbbbbbbbbbbbbbb 7
 ```
 
 Also, to write generated text to a file, specify output file path with `-o` parameter.
+```sh
+$ python-text-generator -i test.txt -o output.txt
+```
