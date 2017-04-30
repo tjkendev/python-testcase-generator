@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import sys, os
-import src.setting as setting
-import src.builtin as builtin
+import python_text_generator.setting as setting
+import python_text_generator.builtin as builtin
 
 def default_scope():
     return {

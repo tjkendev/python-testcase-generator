@@ -1,5 +1,5 @@
 import unittest
-from src.generator import generator
+from python_text_generator.generator import generator
 from test.lib.IO import BaseIO
 
 class TestQuotes(unittest.TestCase):

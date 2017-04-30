@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-import src.setting as setting
+import python_text_generator.setting as setting
 
 setup(
     name='python-text-generator',
@@ -7,12 +7,9 @@ setup(
     author_email = 'jake-basu@hotmail.co.jp',
     version = setting.version,
     packages = ['python_text_generator'],
-    package_dir = {
-        'python_text_generator': 'src'
-    },
     install_requires = [],
     entry_points = {
-        'console_scripts': 'python-text-generator=src.main:entry'
+        'console_scripts': 'python-text-generator=python_text_generator.main:entry'
     },
     url = "https://github.com/tjkendev/python-text-generator",
     classifiers = [

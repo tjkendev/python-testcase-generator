@@ -1,5 +1,5 @@
 import unittest
-from src.builtin import to_s
+from python_text_generator.builtin import to_s
 
 class TestBuiltin(unittest.TestCase):
 
