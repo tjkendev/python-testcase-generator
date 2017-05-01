@@ -1,9 +1,9 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import python_testcase_generator.setting as setting
 
 setup(
     name='python-testcase-generator',
-    description='A testcase generator that can write testcase using Python expression',
+    description='A testcase generator that can generate a test case from Python expression',
     author = 'yaketake08',
     author_email = 'jake-basu@hotmail.co.jp',
     version = setting.version,
