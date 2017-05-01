@@ -1,5 +1,5 @@
 import unittest
-from python_text_generator.generator import generator
+from python_testcase_generator.generator import generator
 from test.lib.IO import BaseIO
 
 class TestSyntax(unittest.TestCase):

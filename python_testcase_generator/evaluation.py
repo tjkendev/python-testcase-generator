@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import sys, os
-import python_text_generator.setting as setting
-import python_text_generator.builtin as builtin
+import python_testcase_generator.setting as setting
+import python_testcase_generator.builtin as builtin
 
 def default_scope():
     return {

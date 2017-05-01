@@ -1,36 +1,34 @@
-Python Text Generator
+Python Test Case Generator
 ====
 
-Python Text Generator is text generator using Python expressions and statements.
+Python Test Case Generator is a test case generator using Python expressions and statements.
 
-This tool allows you to generate text by writing Python expressions directly.
+This tool allows you to generate a test case by writing Python expressions directly.
 
 ## Install
 
 Installation using `setup.py`.
 ```sh
-$ git clone https://github.com/tjkendev/python-text-generator
-$ cd python-text-generator
+$ git clone https://github.com/tjkendev/python-testcase-generator
+$ cd python-testcase-generator
 $ python setup.py install
 ```
 Installation using pip.
 ```sh
-$ git clone https://github.com/tjkendev/python-text-generator
-$ cd python-text-generator
-$ pip install python-text-generator
+$ pip install python-testcase-generator
 ```
 
 ## Usage
 
-By calling `python-text-generator` with no parameters, text is generated from stdin
+By calling `python-testcase-generator` (or `pytcgen`) with no parameters, a test case is generated from stdin
 and outputted as stdout.
 ```sh
-$ echo "[i**2 for i in range(9)]" | python-text-generator
+$ echo "[i**2 for i in range(9)]" | python-testcase-generator
 0 1 4 9 16 25 36 49 64
 ```
 
-To generate text from a file, you can specify input file path with `-i` parameter.  
-For example, to generate text from the file below:
+To generate a test case from a file, you can specify input file path with `-i` parameter.  
+For example, to generate a test case from the file below:
 ```sh
 $ cat test.txt
 1 2 3 "a" ["b", "c"]
@@ -59,7 +57,7 @@ to_s(B, ["\n","-"])
 
 You can specify input file path as follows:
 ```sh
-$ python-text-generator -i test.txt
+$ python-testcase-generator -i test.txt
 1 2 3 a b c
 1 2 3 1 2 3
 aaaaaaaaaa
@@ -79,7 +77,7 @@ bbbbbbbbbbbbbbb 7
 6-7 8
 ```
 
-Also, to write generated text to a file, specify output file path with `-o` parameter.
+Also, to write generated a test case to a file, specify output file path with `-o` parameter.
 ```sh
-$ python-text-generator -i test.txt -o output.txt
+$ python-testcase-generator -i test.txt -o output.txt
 ```

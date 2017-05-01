@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys, argparse
-from python_text_generator.generator import generator
+from python_testcase_generator.generator import generator
 
 def entry():
     parser = argparse.ArgumentParser()
