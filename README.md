@@ -3,6 +3,7 @@ Python Test Case Generator
 
 [![PyPI](https://img.shields.io/pypi/v/python-testcase-generator.svg)](https://pypi.python.org/pypi/python-testcase-generator)
 [![PyPI](https://img.shields.io/pypi/l/python-testcase-generator.svg)]()
+[![Travis](https://img.shields.io/travis/tjkendev/python-testcase-generator.svg)](https://travis-ci.org/tjkendev/python-testcase-generator)
 
 Python Test Case Generator that can generate a test case from Python expression.
 
