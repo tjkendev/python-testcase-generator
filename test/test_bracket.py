@@ -1,4 +1,8 @@
-import unittest
+import sys
+if sys.version_info < (2, 7):
+    import unittest2 as unittest
+else:
+    import unittest
 from python_testcase_generator.generator import generator
 from test.lib.IO import BaseIO
 
@@ -60,8 +64,8 @@ class TestBracket(unittest.TestCase):
         self.assertEqual("\n", self.output.getvalue())
 
     def test_brace_set(self):
-        self.target(BaseIO("{1, 2, 3}"), self.output)
-        self.assertEqual("1 2 3\n", self.output.getvalue())
+        self.target(BaseIO("{1, 1}"), self.output)
+        self.assertEqual("1\n", self.output.getvalue())
 
     def test_brace_dict(self):
         self.target(BaseIO("{1: 2, 3: 4}"), self.output)
@@ -69,7 +73,7 @@ class TestBracket(unittest.TestCase):
 
     def test_brace_generator_set(self):
         self.target(BaseIO("{i**2 for i in range(4)}"), self.output)
-        self.assertEqual("0 1 4 9\n", self.output.getvalue())
+        self.assertEqual(set([0,1,4,9]), set(map(int, self.output.getvalue().split())))
 
     def test_brace_set_in_string(self):
         self.target(BaseIO("{ '} {' }"), self.output)

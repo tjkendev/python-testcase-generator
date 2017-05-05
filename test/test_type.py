@@ -1,4 +1,8 @@
-import unittest, platform
+import sys, platform
+if sys.version_info < (2, 7):
+    import unittest2 as unittest
+else:
+    import unittest
 from python_testcase_generator.generator import generator
 from test.lib.IO import BaseIO
 
