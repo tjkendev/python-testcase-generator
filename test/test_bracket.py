@@ -63,6 +63,7 @@ class TestBracket(unittest.TestCase):
         self.target(BaseIO("()"), self.output)
         self.assertEqual("\n", self.output.getvalue())
 
+    @unittest.skipIf(sys.version_info < (2, 7), 'Set literals is not supported in version <= 2.7.')
     def test_brace_set(self):
         self.target(BaseIO("{1, 1}"), self.output)
         self.assertEqual("1\n", self.output.getvalue())
@@ -71,10 +72,12 @@ class TestBracket(unittest.TestCase):
         self.target(BaseIO("{1: 2, 3: 4}"), self.output)
         self.assertEqual("1 3\n", self.output.getvalue())
 
+    @unittest.skipIf(sys.version_info < (2, 7), 'Set literals is not supported in version <= 2.7.')
     def test_brace_generator_set(self):
         self.target(BaseIO("{i**2 for i in range(4)}"), self.output)
         self.assertEqual(set([0,1,4,9]), set(map(int, self.output.getvalue().split())))
 
+    @unittest.skipIf(sys.version_info < (2, 7), 'Set literals is not supported in version <= 2.7.')
     def test_brace_set_in_string(self):
         self.target(BaseIO("{ '} {' }"), self.output)
         self.assertEqual("} {\n", self.output.getvalue())
@@ -83,7 +86,12 @@ class TestBracket(unittest.TestCase):
         self.target(BaseIO("{} set()"), self.output)
         self.assertEqual(" \n", self.output.getvalue())
 
+    @unittest.skipIf(sys.version_info < (2, 7), 'Set literals is not supported in version <= 2.7.')
     def test_mixed_nested_bracket(self):
         self.target(BaseIO("(1, [4, {6}, (5, 8)], 3)"), self.output)
+        self.assertEqual("1 4 6 5 8 3\n", self.output.getvalue())
+
+    def test_mixed_nested_bracket_2_6(self):
+        self.target(BaseIO("(1, [4, [6], (5, 8)], 3)"), self.output)
         self.assertEqual("1 4 6 5 8 3\n", self.output.getvalue())
 
