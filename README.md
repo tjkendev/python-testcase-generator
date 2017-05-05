@@ -1,6 +1,9 @@
 Python Test Case Generator
 ====
 
+[![PyPI](https://img.shields.io/pypi/v/python-testcase-generator.svg)](https://pypi.python.org/pypi/python-testcase-generator)
+[![PyPI](https://img.shields.io/pypi/l/python-testcase-generator.svg)]()
+
 Python Test Case Generator that can generate a test case from Python expression.
 
 This tool allows you to generate a test case by writing Python expressions directly.
@@ -33,7 +36,7 @@ $ cat test.txt
 `"b" * 15` `1 + 2 * 3`
 
 % # You can use Python statement by beginning a line with percent sign (%).
-% # Any character is not output in Python statement except standard output.
+% # Any character is not output in Python statement except print statement.
 % x = [1, 2]; y = [9, 3, 4, "d"]
 x[0] x y*2
 {4, x[1], 6}
